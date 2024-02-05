@@ -25,6 +25,7 @@ include (
         'spark-forge',
         'spark-fabric',
         'spark-nukkit',
-        'spark-waterdog',
+        'spark-pnx',
+//        'spark-waterdog',
         //'spark-minestom', // disabled until minestom publish their maven artifacts to a proper repo
 )
