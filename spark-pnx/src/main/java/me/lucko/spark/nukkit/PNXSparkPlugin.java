@@ -89,7 +89,7 @@ public class PNXSparkPlugin extends PluginBase implements SparkPlugin {
 
     @Override
     public void executeSync(Runnable task) {
-        getServer().getScheduler().scheduleTask(this, task, true);
+        getServer().getScheduler().scheduleTask(this, task, false);
     }
 
     @Override
