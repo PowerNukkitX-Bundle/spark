@@ -20,7 +20,11 @@
 
 package me.lucko.spark.nukkit;
 
+import cn.nukkit.command.Command;
+import cn.nukkit.command.CommandSender;
 import cn.nukkit.plugin.Plugin;
+import cn.nukkit.plugin.PluginBase;
+import cn.nukkit.plugin.service.ServicePriority;
 import me.lucko.spark.api.Spark;
 import me.lucko.spark.common.SparkPlatform;
 import me.lucko.spark.common.SparkPlugin;
@@ -29,11 +33,6 @@ import me.lucko.spark.common.platform.PlatformInfo;
 import me.lucko.spark.common.platform.world.WorldInfoProvider;
 import me.lucko.spark.common.sampler.ThreadDumper;
 import me.lucko.spark.common.sampler.source.ClassSourceLookup;
-
-import cn.nukkit.command.Command;
-import cn.nukkit.command.CommandSender;
-import cn.nukkit.plugin.PluginBase;
-import cn.nukkit.plugin.service.ServicePriority;
 import me.lucko.spark.common.sampler.source.SourceMetadata;
 import me.lucko.spark.common.tick.TickHook;
 
@@ -89,12 +88,16 @@ public class PNXSparkPlugin extends PluginBase implements SparkPlugin {
 
     @Override
     public void executeSync(Runnable task) {
-        getServer().getScheduler().scheduleTask(this, task, false);
+        if (this.isEnabled()) {
+            getServer().getScheduler().scheduleTask(this, task, false);
+        }
     }
 
     @Override
     public void executeAsync(Runnable task) {
-        getServer().getScheduler().scheduleTask(this, task, true);
+        if (this.isEnabled()) {
+            getServer().getScheduler().scheduleTask(this, task, true);
+        }
     }
 
     @Override
